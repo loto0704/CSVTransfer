@@ -1,6 +1,6 @@
 import tkinter
 from tkinter.constants import FLAT, MULTIPLE, SOLID
-import tkinter.filedialog, csv, datetime, os
+import tkinter.filedialog, datetime, os
 import pandas
 
 def main():
