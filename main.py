@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import tkinter
 from tkinter.constants import FLAT, MULTIPLE, SOLID
 import tkinter.filedialog, datetime, os

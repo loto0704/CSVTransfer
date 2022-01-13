@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import tkinter
 from tkinter.constants import FLAT, MULTIPLE, SOLID
 import tkinter.filedialog, datetime, os, pandas, json
@@ -81,7 +84,7 @@ class TkinterClass:
         now = datetime.datetime.now()
         base_dir = os.path.abspath(os.path.dirname(__file__))
         read_df = pandas.read_csv(self.csv_file_name.get(), encoding='utf-8')
-        json_open = open(file=self.json_file_name.get(), mode='r')
+        json_open = open(file=self.json_file_name.get(), mode='r', encoding='utf-8')
         # with open(file=self.json_file_name.get(), mode='r') as json_open:
         format_json = json.load(json_open)["Transfer-column"]
         # print(len(format_json))
