@@ -1,7 +1,8 @@
 {
     "Transfer-column":[
         {"氏名":{
-             "replace-str":[" ", ""]
+             "replace-str":[" ", ""],
+             "Column-As":"なまえ"
             }
         },
         {"生年月日":{
@@ -9,9 +10,11 @@
             }
         },
         {"電話番号":{
-            "replace":["-", ""]
+            "replace-str":["-", ""]
             }
         },
         {"会社名":""}
-        ]
+        ],
+    "Save-Directory":"Data",
+    "Save-FileName":""
 }

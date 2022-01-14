@@ -26,10 +26,6 @@ class TkinterClass:
         label_file_path = tkinter.Label(textvariable=self.column_name, font=('', 9))
         label_file_path.pack(pady=0)
         
-        # self.list_column = tkinter.StringVar()
-        # label_list_column = tkinter.Listbox(listvariable=self.list_column,
-        #                                font=('', 9), selectmode=MULTIPLE, relief=FLAT)
-        
         # jsonファイル選択
         button_json = tkinter.Button(root, text='jsonファイル選択', font=('', 20),
                            width=24, height=1, bg='#999999', activebackground="#aaaaaa")
@@ -53,14 +49,6 @@ class TkinterClass:
             return
         else:
             self.csv_file_name.set(csv_file_name)
-            
-        """
-        with open(file=csv_file_name, mode='r', encoding='utf-8-sig') as f:
-            self.label_list_column = tkinter.Listbox(listvariable=self.list_column,
-                                           font=('', 9), selectmode=MULTIPLE, relief=SOLID)
-            self.list_column.set(f.readline().split(','))
-            self.label_list_column.pack(pady=0)
-        """
         
         proceed_button = tkinter.Button(text='変換実行',font=('', 15),
                                 width=12, height=1, bg='#999999', activebackground="#aaaaaa")
@@ -92,20 +80,16 @@ class TkinterClass:
         json_keys = []
         csv_column = []
         for i in range(len(format_json)):
-            # if "\n" in self.label_list_column.get(list_get[i]):
-            #     csv_column.append(self.label_list_column.get(list_get[i]).strip())
-            # else:
-            #     csv_column.append(self.label_list_column.get(list_get[i]))
-            # json_keys.append(format_json[i].keys())
             for j in format_json[i].keys():
                 json_keys.append(j)
             
-        # for i in range(len(format_json)):
-        #     csv_column.append(json_keys[i])
-        
-        print(json_keys)
-        save_df = read_df.loc[:,json_keys]
-        save_df.to_csv(f'{base_dir}/output{now.strftime("%Y%m%d-%H%M%S")}.csv', header=True,index=False)
+        out_df = read_df.loc[:,json_keys]
+        for i in range(len(json_keys)):
+            # flag = "replace-str" in format_json[i][json_keys[i]]
+            if "replace-str" in format_json[i][json_keys[i]]:
+                out_df[json_keys[i]] = out_df[json_keys[i]].str.replace(format_json[i][json_keys[i]]["replace-str"][0], format_json[i][json_keys[i]]["replace-str"][1])
+            
+        out_df.to_csv(f'{base_dir}/output{now.strftime("%Y%m%d-%H%M%S")}.csv', header=True,index=False)
         # return save_df
         
         # 終了
