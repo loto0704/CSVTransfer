@@ -1,5 +1,6 @@
 {
-    "Transfer-column":[
+    "Save-column": ["氏名", "生年月日", "電話番号", "会社名", "住所", "氏名&年齢", "性別"],
+    "Transfer-column": [
         {"氏名":{
              "replace-str":[" ", ""],
              "Column-As":"なまえ"
@@ -13,8 +14,23 @@
             "replace-str":["-", ""]
             }
         },
-        {"会社名":""}
+        {"会社名": ""},
+        {"住所": {
+            "ex": ["",""]
+            }
+        },
+        {"氏名&年齢": {
+            "extract": ["【", "】"]
+            }
+        },
+        {"性別":
+            {"Filters": ["女", "その他・不明"]
+            }
+        }
         ],
+    "Copy-column": ["氏名(年齢)"],
+    "Add-column": [],
     "Save-Directory":"Data",
-    "Save-FileName":""
+    "Save-FileName":"ファイル保存名",
+    "encode": "UTF-8"
 }
